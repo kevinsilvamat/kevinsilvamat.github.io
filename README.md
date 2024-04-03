@@ -53,7 +53,6 @@
             margin-bottom: 10px;
         }
     </style>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -71,19 +70,10 @@
             </div>
         </header>
 
-<nav class="navbar">
-        <ul class="nav-list">
-            <li><a href="#education">Educación</a></li>
-            <li><a href="#work-experience">Experiencia Laboral</a></li>
-            <li><a href="#research">Investigación</a></li>
-            <li><a href="#skills">Habilidades</a></li>
-            <li><a href="#contact">Contacto</a></li>
-        </ul>
-    </nav>
 
     
         
-    <section id="education">
+    <section class="education">
             <h2>Education</h2>
             <table>
                 <tr>
@@ -253,6 +243,33 @@
         <!-- Agrega aquí más charlas en conferencias matemáticas -->
     </ul>
 </section>
+
+<section id="skills" class="resume-section">
+    <h2>Habilidades</h2>
+    <div class="skills-list">
+        <div class="skill-category">
+            <h3>Programación</h3>
+            <ul>
+                <li>Python</li>
+                <li>MATLAB</li>
+                <li>R</li>
+            </ul>
+        </div>
+        <div class="skill-category">
+            <h3>Software básico de computadora</h3>
+            <ul>
+                <li>LaTeX</li>
+            </ul>
+        </div>
+        <div class="skill-category">
+            <h3>Idiomas</h3>
+            <ul>
+                <li>Español - Inglés</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
 
 
     </div>
