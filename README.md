@@ -132,18 +132,18 @@
     </ul>
         </section>
 
-        <section class="my-research">
+       <section class="my-research">
     <h2>My Research</h2>
     <div class="research-image">
-        <!-- Inserta aquí tu imagen o gráfico relacionado con tu investigación -->
+        <img src="6BBF8910-455E-4E85-9A73-A4D5498C2898.jpeg" alt="Koch" class="image">
     </div>
     <div class="research-description">
         <p>
             My research focuses on partial differential equations on domains with fractal boundaries. I also employ functional analysis and classical analysis, semigroup theory, and control theory. I apply these concepts to heat and diffusion problems in biological processes, and I am currently delving into machine learning with PDEs.
         </p>
     </div>
-    
-    </section>
+</section>
+
 
 
         <section class="publications-research-papers">
