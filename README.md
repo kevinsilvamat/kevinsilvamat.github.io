@@ -1,4 +1,4 @@
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,9 +57,9 @@
 <body>
     <div class="container">
         <header>
-            <h1>Curriculum Vitae - Kevin Silva-Pérez</h1>
+            <h1>Curriculum Vitae</h1>
             <div class="contact-info">
-                <img src="IMG_6304.JPG" alt="Foto de perfil" class="image">
+                <img src="IMG_6304.JPG" alt="Profile Picture" class="image">
                 <div>
                     <p><strong>Kevin Silva-Pérez</strong></p>
                     <p>+1 7874877696</p>
@@ -71,39 +71,64 @@
         </header>
         
         <section class="education">
-            <h2>Educación</h2>
+            <h2>Education</h2>
             <table>
                 <tr>
-                    <th>Grado/Certificado</th>
-                    <th>Instituto/Consejo</th>
+                    <th>Degree/Certificate</th>
+                    <th>Institute/Board</th>
                     <th>CGPA</th>
-                    <th>Año</th>
+                    <th>Year</th>
                 </tr>
                 <tr>
-                    <td>PhD en Matemáticas Computacionales y Estadísticas</td>
-                    <td>Universidad de Puerto Rico en Río Piedras</td>
+                    <td>PhD in Computational and Statistics Mathematics</td>
+                    <td>University of Puerto Rico at Río Piedras</td>
                     <td>4.0</td>
                     <td>2023</td>
                 </tr>
                 <tr>
-                    <td>MSc. en Matemáticas Aplicadas</td>
-                    <td>Universidad de Puerto Rico en Mayagüez</td>
+                    <td>MSc. in Applied Mathematics</td>
+                    <td>University of Puerto Rico at Mayagüez</td>
                     <td>3.7</td>
                     <td>2021</td>
                 </tr>
                 <tr>
-                    <td>Bachillerato en Matemáticas</td>
+                    <td>Bachelor of Mathematics</td>
                     <td>Universidad de Cartagena</td>
                     <td>3.6</td>
                     <td>2020</td>
                 </tr>
             </table>
-            <p><strong>(*):</strong> Asesor: Alejandro Vélez-Santiago, PhD</p>
-            <p><strong>Disertación:</strong> Difusión en Dominios con Fronteras Fractales Ramificadas</p>
+            <p><strong>(*):</strong> Advisor: Alejandro Vélez-Santiago, PhD</p>
+            <p><strong>Dissertation:</strong> Diffusion over Domains with Ramified Fractal Boundaries</p>
         </section>
 
-        <!-- Otras secciones aquí -->
+        <section class="work-experience">
+            <h2>Work Experience</h2>
+            <ul>
+                <li>
+                    <strong>Teaching Assistant (TA)</strong><br>
+                    <em>University of Puerto Rico at Rio Piedras</em><br>
+                    <em>Professor (MATE 3105)</em><br>
+                    <em>Aug 2023 - Present</em>
+                </li>
+                <!-- Agregar más elementos de la lista según sea necesario -->
+            </ul>
+        </section>
+
+        <section class="publications-research-papers">
+            <h2>Publications: Research Papers</h2>
+            <ul>
+                <li>
+                    <strong>K. Silva-Pérez*, A. Vélez-Santiago</strong><br>
+                    <em>Diffusion over ramified domains: solvability and fine regularity.</em><br>
+                    <em>Submitted to Calculus of Variation and PDEs (Germany).</em><br>
+                    <em>Dec. 2023</em>
+                </li>
+                <!-- Agregar más elementos de la lista según sea necesario -->
+            </ul>
+        </section>
 
     </div>
 </body>
 </html>
+
