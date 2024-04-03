@@ -159,6 +159,89 @@
             </ul>
         </section>
 
+        <section class="publications-books">
+    <h2>Publications: Books</h2>
+    <ul>
+        <li>
+            <strong>K. Silva-Pérez, R. Arrieta-Montalvo, P. Ortega, B. Johnson</strong>
+            <br>
+            <em>Calculus with MATLAB.</em>
+            <br>
+            Published by Editorial Universidad de Cartagena.
+            <br>
+            April, 2021
+        </li>
+        <!-- Añade aquí más publicaciones de libros -->
+    </ul>
+</section>
+
+<section class="talks-at-math-conferences">
+    <h2>Talks at Math Conferences</h2>
+    <ul>
+        <li>
+            <strong><a href="https://conferences.cirm-math.fr/2950.html">Analysis on Fractals and Networks, and Applications</a></strong>
+            <br>
+            Diffusion on Bronchial Trees: Construction and Approximation Results (Poster Presentation)
+            <br>
+            18 - 22 March, 2024
+            <br>
+            CIRM, France
+        </li>
+        <li>
+            <strong><a href="https://www.uprh.edu/uprh-sede-de-seminario-interuniversitario-de-investigacion-en-ciencias-matematicas/">XXXIX Interuniversity Seminar on Research in the Mathematical Sciences (SIDIM)</a></strong>
+            <br>
+            Date: 1 - 2 March, 2024
+            <br>
+            Location: Humacao, PR
+        </li>
+        <li>
+            <strong>Charla, Café y Ciencia</strong>
+            <br>
+            Talk: Hausdorff Measure over Domains with Ramified Fractal Boundaries
+            <br>
+            Date: 20 June, 2023
+            <br>
+            Location: Universidad de Cartagena, Colombia
+        </li>
+        <li>
+            <strong><a href="http://aimsconference.org/conferences/2023/program-compressed-2023-05-22-0855.pdf">The 13th AIMS Conference on Dynamical Systems, Differential Equations And Applications</a></strong>
+            <br>
+            Talk: Diffusion over Bronchial Trees: Fine Regularity (with Dr. Alejandro Vélez-Santiago)
+            <br>
+            Date: May 31 – June 4, 2023
+            <br>
+            Location: Wilmington, NC USA
+        </li>
+        <li>
+            <strong><a href="https://www.uprm.edu/math/sidimxxxviii/#1668520982779-b179a3f8-e2e5">XXXVIII Interuniversity Seminar on Research in the Mathematical Sciences (SIDIM)</a></strong>
+            <br>
+            Talk: Diffusion on Bronchial Trees
+            <br>
+            Date: 24 - 25 February, 2023
+            <br>
+            Location: Mayaguez, PR
+        </li>
+        <li>
+            <strong><a href="https://www.ipam.ucla.edu/programs/special-events-and-conferences/latinx-in-the-mathematical-sciences-conference-2022/">Latinx in the Mathematical Sciences Conference</a></strong>
+            <br>
+            Date: 7 - 9 July, 2022
+            <br>
+            Location: UCLA campus, California, USA
+        </li>
+        <li>
+            <strong><a href="https://math.cornell.edu/7th-cornell-conference-analysis-probability-and-mathematical-physics-fractals">7th Cornell Conference on Analysis, Probability, and Mathematical Physics on Fractals</a></strong>
+            <br>
+            Preparation for research
+            <br>
+            Date: 4 - 8 June, 2022
+            <br>
+            Location: Cornell University, NY USA
+        </li>
+        <!-- Agrega aquí más charlas en conferencias matemáticas -->
+    </ul>
+</section>
+
+
     </div>
 </body>
 </html>
