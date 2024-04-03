@@ -245,27 +245,43 @@
 </section>
 
 <section id="skills" class="resume-section">
-    <h2>Habilidades</h2>
+    <h2>Skills</h2>
     <div class="skills-list">
-        <div class="skill-category">
-            <h3>Programación</h3>
-            <ul>
-                <li>Python</li>
-                <li>MATLAB</li>
-                <li>R</li>
-            </ul>
+        <div class="skill">
+            <h3>Programming</h3>
+            <p>Python, MATLAB, R</p>
         </div>
-        <div class="skill-category">
-            <h3>Software básico de computadora</h3>
-            <ul>
-                <li>LaTeX</li>
-            </ul>
+        <div class="skill">
+            <h3>Basic Computer Software</h3>
+            <p>LaTeX</p>
         </div>
-        <div class="skill-category">
-            <h3>Idiomas</h3>
-            <ul>
-                <li>Español - Inglés</li>
-            </ul>
+        <div class="skill">
+            <h3>Languages</h3>
+            <p>Spanish - English</p>
+        </div>
+    </div>
+</section>
+
+
+<section id="memberships" class="resume-section">
+    <h2>Memberships / Organizations</h2>
+    <div class="membership-list">
+        <div class="membership">
+            <h3>Society for Advancement of Hispanic / Chicano and Native American in Science (SACNAS)</h3>
+            <p><a href="https://www.sacnas.org/">SACNAS Website</a></p>
+        </div>
+        <div class="membership">
+            <h3>Student Association of Mathematics UPRRP</h3>
+            <p><a href="https://www.instagram.com/aemat.uprrp?igsh=YnF1Nms1dHUza2M5">AeMat Instagram</a></p>
+        </div>
+        <div class="membership">
+            <h3>American Red Cross: Volunteer Connection Puerto Rico</h3>
+            <p><a href="https://volunteerconnection.redcross.org/?nd=profile">Red Cross Website</a></p>
+            <p>Position: Information and Planning Team Member (North)</p>
+        </div>
+        <div class="membership">
+            <h3>Fractal and PDEs Research Group</h3>
+            <p>Directed by Alejandro Vélez-Santiago (PhD)</p>
         </div>
     </div>
 </section>
