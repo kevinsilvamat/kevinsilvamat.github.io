@@ -1,6 +1,5 @@
-# kevinsilvamat.github.io
-Curriculum Vitae - Kevin Silva Perez, PhD Student
-<!DOCTYPE html>
+% kevinsilvamat.github.io
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -33,12 +32,11 @@ Curriculum Vitae - Kevin Silva Perez, PhD Student
 </head>
 <body>
     <div class="container">
-        <h1>Mi Curriculum Vitae</h1>
-        <h2>Datos Personales</h2>
-        <p>Nombre: Tu Nombre</p>
-        <p>Email: tu@email.com</p>
-        <h2>Experiencia Laboral</h2>
-        <p>Nombre del Trabajo, Empresa, Año - Año</p>
+        <h1>Curriculum Vitae</h1>
+        <h2>Personal Information</h2>
+        <p>Email: kevin.silva1@upr.edu</p>
+        <h2>Work Experiences</h2>
+        <p>University of Puerto Rico at Rio Piedras</p>
         <p>Descripción breve de las responsabilidades y logros en el trabajo.</p>
         <h2>Educación</h2>
         <p>Título, Universidad, Año - Año</p>
