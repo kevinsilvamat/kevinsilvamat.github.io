@@ -103,17 +103,48 @@
         </section>
 
         <section class="work-experience">
-            <h2>Work Experience</h2>
-            <ul>
-                <li>
-                    <strong>Teaching Assistant (TA)</strong><br>
-                    <em>University of Puerto Rico at Rio Piedras</em><br>
-                    <em>Professor (MATE 3105)</em><br>
-                    <em>Aug 2023 - Present</em>
-                </li>
-                <!-- Agregar más elementos de la lista según sea necesario -->
-            </ul>
+    <h2>Work Experience</h2>
+    <ul>
+        <li>
+            <strong>Teaching Assistant (TA)</strong><br>
+            <em>University of Puerto Rico at Rio Piedras</em><br>
+            <em>Professor (MATE 3105)</em><br>
+            <em>Aug 2023 - Present</em>
+        </li>
+        <li>
+            <strong>Teaching Assistant (TA)</strong><br>
+            <em>University of Puerto Rico at Mayaguez</em><br>
+            <em>Professor of Pre Calculus I, Pre Calculus II and Calculus</em><br>
+            <em>Aug 2021 - May 2023</em>
+        </li>
+        <li>
+            <strong>College Board and SAT</strong><br>
+            <em>University of Puerto Rico at Mayaguez</em><br>
+            <em>Professor in Mathematical Reasoning</em><br>
+            <em>Sep 2021 - Dec 2022</em>
+        </li>
+        <li>
+            <strong>Tutor</strong><br>
+            <em>Universidad de Cartagena, Colombia</em><br>
+            <em>Tutor in Calculus I, II and III, Differential Equations and Statistics.</em><br>
+            <em>Aug 2019 - May 2021</em>
+        </li>
+    </ul>
         </section>
+
+        <section class="my-research">
+    <h2>My Research</h2>
+    <div class="research-image">
+        <!-- Inserta aquí tu imagen o gráfico relacionado con tu investigación -->
+    </div>
+    <div class="research-description">
+        <p>
+            My research focuses on partial differential equations on domains with fractal boundaries. I also employ functional analysis and classical analysis, semigroup theory, and control theory. I apply these concepts to heat and diffusion problems in biological processes, and I am currently delving into machine learning with PDEs.
+        </p>
+    </div>
+    
+    </section>
+
 
         <section class="publications-research-papers">
             <h2>Publications: Research Papers</h2>
