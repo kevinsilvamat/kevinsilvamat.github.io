@@ -69,8 +69,20 @@
                 </div>
             </div>
         </header>
+
+        <body>
+    <!-- Sección de navegación -->
+    <nav>
+        <ul>
+            <li><a href="#education">Educación</a></li>
+            <li><a href="#work-experience">Experiencia Laboral</a></li>
+            <li><a href="#research">Investigación</a></li>
+            <li><a href="#skills">Habilidades</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </nav>
         
-        <section class="education">
+    <section id="education">
             <h2>Education</h2>
             <table>
                 <tr>
