@@ -182,6 +182,13 @@
     <h2>Talks at Math Conferences</h2>
     <ul>
         <li>
+            <strong><a href="https://sites.google.com/upr.edu/higher-index-theory/home">Workshop in Non-Commutative Geometry and Higher Index Theory</a></strong>
+            <br>
+            5 - 7 April, 2024
+            <br>
+            Luquillo, PR
+        </li>
+        <li>
             <strong><a href="https://conferences.cirm-math.fr/2950.html">Analysis on Fractals and Networks, and Applications</a></strong>
             <br>
             Diffusion on Bronchial Trees: Construction and Approximation Results (Poster Presentation)
