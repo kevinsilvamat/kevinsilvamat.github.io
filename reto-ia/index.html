@@ -39,7 +39,7 @@ button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus
 'use strict';
 var PAGE='https://kevinsilvamat.github.io/reto-ia/';
 var questions=[
-{category:'01 · LA PREDICCIÓN',title:'¿Qué palabra elegiría la máquina?',description:'Supón que el modelo calculó estas probabilidades para completar «Después de la lluvia, el suelo estaba…». Si elige la más probable, ¿cuál escribe?',visual:'prob',options:['seco','mojado','verde','rojo'],correct:1,why:'En este ejemplo hipotético, «mojado» tiene la probabilidad más alta (54%). El modelo asigna puntuaciones a posibles continuaciones: no necesita experimentar la lluvia.'},
+{category:'01 · EL DETECTOR',title:'Un detector afirma: «¡Lo escribió una IA!»',description:'De 100 textos, 10 son de IA y 90 de humanos. El detector identifica el 90 % de los textos de IA, pero señala por error al 10 % de los humanos. Si acusa a un texto de haber sido escrito por IA, ¿qué probabilidad hay de que tenga razón?',visual:'bayes',options:['90 %','50 %','10 %','81 %'],correct:1,why:'De los 10 textos de IA, detecta 9. Pero también acusa a 9 de los 90 textos humanos. Entre los 18 textos señalados, solo 9 son de IA: 9/18 = 50 %. Es el efecto de la tasa base: un detector muy preciso puede producir muchas falsas alarmas.'},
 {category:'02 · UN FRACTAL',title:'Un triángulo se convierte en tres.',description:'En cada iteración del triángulo de Sierpiński sobreviven 3 copias de cada triángulo. ¿Cuántas piezas quedan después de 3 iteraciones?',visual:'fractal',options:['9','12','27','81'],correct:2,why:'Cada paso multiplica el número anterior por 3: 1 → 3 → 9 → 27. En general, después de n iteraciones aparecen 3ⁿ triángulos pequeños.'},
 {category:'03 · EL SECRETO DE LA ATENCIÓN',title:'¿Quién lleva la información?',description:'En un Transformer aparecen los vectores Q, K y V. ¿Cuál está asociado al contenido que se combina para obtener la salida de atención?',visual:'qkv',options:['Q (Query)','K (Key)','V (Value)','Ninguno de ellos'],correct:2,why:'Q formula una consulta; K ayuda a calcular con qué elementos coincide; V aporta los valores o contenidos que se ponderan y combinan.'},
 {category:'04 · DENTRO DEL LENGUAJE',title:'Una frase no entra como una sola idea.',description:'Un modelo de lenguaje divide el texto en unidades que después representa numéricamente. ¿Cómo se llaman esas unidades?',visual:'tokens',options:['Fotogramas','Tokens','Teoremas','Píxeles'],correct:1,why:'Se llaman tokens. Pueden ser palabras, partes de palabras, signos o símbolos. El modelo aprende relaciones entre sus representaciones.'},
@@ -55,7 +55,7 @@ function triangles(level,x,y,size,out){if(level===0){var h=size*.8660254;out.pus
 function fractal(level){var out=[];triangles(level,25,14,430,out);return '<g fill="#65e4b4" stroke="#0a3035" stroke-width="1.6">'+out.join('')+'</g>'}
 el('hero-fractal').innerHTML=fractal(4);
 function graphic(type){
-if(type==='prob'){var rows=[['mojado',54],['seco',25],['verde',14],['rojo',7]];return '<div class="prob">'+rows.map(function(r){return '<div class="barrow"><span>'+r[0]+'</span><div class="barbg"><div class="barfill" style="width:'+r[1]+'%"></div></div><span>'+r[1]+'%</span></div>'}).join('')+'</div>'}
+if(type==='bayes')return '<div class="qkv"><div><b>10%</b><span>DE LOS TEXTOS SON DE IA</span></div><div><b>90%</b><span>ACIERTO AL DETECTAR IA</span></div><div><b>10%</b><span>FALSOS POSITIVOS HUMANOS</span></div></div><p style="font-size:12px;text-align:center;color:#acd8ce;margin:14px 0 0">Un detector parece muy fiable. ¿Pero qué significa una alerta?</p>';
 if(type==='fractal')return '<div class="fractal-mini"><svg viewBox="0 0 480 405" role="img" aria-label="Triángulo de Sierpiński, tres iteraciones">'+fractal(3)+'</svg></div>';
 if(type==='qkv')return '<div class="qkv"><div><b>Q</b><span>¿Qué busco?</span></div><div><b>K</b><span>¿Con qué encaja?</span></div><div><b>V</b><span>¿Qué aporto?</span></div></div>';
 if(type==='tokens')return '<div class="tokens"><span>El</span><span>cielo</span><span>está</span><span>azul</span></div><p style="font-size:12px;text-align:center;color:#acd8ce;margin:14px 0 0">Ejemplo esquemático: un token no siempre coincide con una palabra.</p>';
@@ -76,7 +76,7 @@ el('category').textContent=q.category;el('question').textContent=q.title;el('des
 el('visual').innerHTML=graphic(q.visual);el('feedback').classList.remove('on');
 el('options').innerHTML='';
 q.options.forEach(function(v,i){var b=document.createElement('button');b.type='button';b.className='choice';var a=document.createElement('span');a.className='letter';a.textContent=String.fromCharCode(65+i);var c=document.createElement('span');c.textContent=v;b.append(a,c);b.addEventListener('click',function(){choose(i)});el('options').appendChild(b)});
-state.remain=25;el('clock').style.display=q.poll?'none':'flex';showClock();
+state.remain=state.index===0?45:25;el('clock').style.display=q.poll?'none':'flex';showClock();
 if(!q.poll)state.timer=setInterval(tick,1000);
 }
 function choose(i){
