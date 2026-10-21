@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#092F34">
+<meta name="description" content="Un reto interactivo de matemáticas, fractales e inteligencia artificial. ¿Quién está pensando?">
+<title>¿Quién está pensando? · El reto interactivo</title>
+<style>
+:root{--bg:#061e25;--panel:#0a3035;--panel2:#104044;--mint:#66e4b4;--mint2:#a7f7d7;--text:#f4fff8;--dim:#aed0c9;--line:#2b6060;--coral:#ffbf92;--bad:#ffa7aa;--white:#fff;--shadow:0 20px 70px #0007}
+*{box-sizing:border-box}html{min-height:100%;scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 20% 8%,#195657 0,transparent 36%),radial-gradient(circle at 95% 82%,#143644 0,transparent 38%),var(--bg);color:var(--text);font-family:Inter,"Avenir Next",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;overflow-x:hidden}
+button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid var(--mint2);outline-offset:4px}button:disabled{cursor:not-allowed;opacity:.6}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}header{padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:15px;letter-spacing:.01em}.mark{display:grid;place-items:center;width:34px;height:34px;border:1px solid #75edd0;border-radius:10px;color:var(--mint);font-size:22px}header .right{display:flex;align-items:center;gap:10px}.subtle-btn{background:transparent;color:var(--mint2);border:1px solid var(--line);border-radius:100px;padding:11px 16px;font-size:12px;font-weight:800;letter-spacing:.05em;transition:background .2s}.subtle-btn:hover{background:#195356}
+.screen{display:none;min-height:calc(100vh - 140px);align-items:center}.screen.active{display:flex;animation:rise .35s both}@keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+.hero{width:100%;display:grid;grid-template-columns:1.03fr .97fr;gap:45px;align-items:center;padding:46px 0 70px}.eyebrow{font-size:12px;color:var(--mint);font-weight:850;letter-spacing:.18em;text-transform:uppercase}.hero h1{font-size:clamp(45px,6.5vw,82px);letter-spacing:-.064em;line-height:1.03;margin:20px 0 22px;max-width:720px}.hero h1 span{color:var(--mint)}.lede{color:var(--dim);font-size:clamp(16px,2vw,21px);line-height:1.55;margin:0 0 30px;max-width:570px}.meta{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 28px}.pill{border:1px solid #3d6565;border-radius:40px;padding:8px 12px;color:#d5eee8;font-size:12px;font-weight:650}.primary{background:var(--mint);color:#082f2c;border:0;border-radius:17px;padding:17px 28px;font-weight:900;letter-spacing:.01em;box-shadow:0 11px 30px #66e4b423;transition:transform .15s,background .15s}.primary:hover{transform:translateY(-2px);background:var(--mint2)}.linklike{border:0;background:transparent;color:var(--mint2);font-weight:800;padding:12px}
+.hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.art{min-height:435px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}.art:before{content:"";position:absolute;width:85%;aspect-ratio:1;border:1px solid #3a8d7a40;border-radius:50%;box-shadow:0 0 0 38px #2f8c7920,0 0 0 78px #2f8c790d}.fractal-art{width:min(90%,450px);filter:drop-shadow(0 0 30px #44ba9370);z-index:1;overflow:visible;animation:float 6s ease-in-out infinite alternate}@keyframes float{to{transform:translateY(-14px) rotate(2deg)}}.float-label{position:absolute;bottom:18px;z-index:2;color:#a5ccbe;font-size:12px;letter-spacing:.13em}.footer{color:#83a6a2;font-size:11px;line-height:1.6;padding:16px 0 28px;border-top:1px solid #3053576e;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.game-shell{width:100%;max-width:800px;margin:4px auto 75px}.topline{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:18px}.topline .mini{font-size:12px;letter-spacing:.13em;color:var(--mint);font-weight:800}.topline .nums{font-size:13px;color:var(--dim)}.progress{height:7px;border-radius:20px;background:#1a5052;overflow:hidden}.progress i{display:block;height:100%;width:0%;background:var(--mint);border-radius:20px;transition:width .45s}
+.qbox{margin-top:20px;background:linear-gradient(155deg,#14454a 0%,#0b3036 70%);border:1px solid #357274;border-radius:26px;padding:clamp(22px,4.5vw,42px);box-shadow:var(--shadow);position:relative;overflow:hidden}.qbox:after{content:"";position:absolute;inset:-80px -160px auto auto;width:300px;height:250px;background:radial-gradient(circle,#65d4b118,transparent 70%);pointer-events:none}.qtag{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.qtag span:first-child{font-size:11px;font-weight:900;letter-spacing:.13em;color:var(--mint)}.clock{display:flex;gap:9px;align-items:center;padding:7px 11px;border:1px solid #52817d;border-radius:999px;font-variant-numeric:tabular-nums;font-size:13px;font-weight:800;color:#dbf6ee}.clock.danger{color:#ffbdad;border-color:#ca7d77}.qbox h2{font-size:clamp(26px,4.3vw,38px);letter-spacing:-.035em;line-height:1.13;margin:21px 0 12px;position:relative}.desc{color:#bfdfd9;font-size:16px;line-height:1.5;max-width:700px;margin:0 0 23px}.visual{border:1px solid #37666b;border-radius:15px;background:#082c31cc;margin:0 0 24px;padding:20px;min-height:90px}
+.prob{display:grid;gap:11px}.barrow{display:grid;grid-template-columns:93px 1fr 38px;align-items:center;gap:13px;font-size:13px;font-weight:700}.barbg{height:13px;border-radius:20px;overflow:hidden;background:#214a50}.barfill{height:100%;background:linear-gradient(90deg,#4ce6af,#a6f7d6);border-radius:20px}.barrow:nth-child(2) .barfill{background:#7bc4c6}.barrow:nth-child(3) .barfill{background:#7a9cbd}.barrow:nth-child(4) .barfill{background:#9e86a3}.formula{display:flex;justify-content:center;gap:18px;align-items:center;flex-wrap:wrap;font-size:clamp(21px,4vw,31px);font-weight:800;text-align:center;color:var(--mint2)}.formula span{font-size:13px;font-weight:600;color:var(--dim)}.fractal-mini{display:flex;justify-content:center;align-items:center}.fractal-mini svg{height:175px;width:220px;max-width:100%}.qkv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.qkv div{border:1px solid #4b7a73;padding:13px;border-radius:13px;text-align:center;font-size:15px;line-height:1.6}.qkv b{display:block;font-size:30px;color:var(--mint)}.qkv span{display:block;color:#d0e5dd;font-size:12px}.tokens{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}.tokens span{background:#154d4d;border:1px solid #4ba88b;border-radius:9px;padding:12px 16px;font-weight:800;color:var(--mint2)}.quote{font-size:clamp(16px,2.5vw,20px);line-height:1.5;text-align:center;color:#e0f2e9}.quote b{color:var(--mint)}
+.options{display:grid;gap:11px}.choice{width:100%;min-height:59px;text-align:left;border:1px solid #427176;color:#f2faf5;background:#17464d;border-radius:14px;padding:13px 15px;display:flex;align-items:center;gap:14px;transition:transform .14s,border-color .14s,background .14s;font-weight:700;line-height:1.35}.choice:hover:not(:disabled){transform:translateY(-1px);border-color:#81eac5;background:#225860}.choice .letter{display:grid;place-items:center;width:32px;height:32px;flex:none;border-radius:9px;background:#285a5c;font-size:13px;color:#b9ebdd}.choice.correct{border-color:#83ffbc;background:#185a49}.choice.correct .letter{background:#65e4aa;color:#0a3032}.choice.wrong{border-color:#e9a6a4;background:#5c3442}.choice.wrong .letter{background:#e9a6a4;color:#482830}.choice:disabled:not(.correct):not(.wrong){opacity:.60}
+.feedback{display:none;animation:rise .25s both;margin-top:18px;border:1px solid #59877f;border-radius:14px;padding:19px;background:#102f34}.feedback.on{display:block}.feedback b{display:block;font-size:18px;margin-bottom:7px}.feedback p{color:#d0e7e0;line-height:1.5;margin:0 0 16px;font-size:14px}.feedback .next{padding:13px 20px}.kbd{color:#83a59f;font-size:11px;margin:14px 0 0;text-align:center}
+.end{text-align:center;width:min(100%,680px);margin:15px auto 80px}.medallion{margin:0 auto 25px;width:124px;height:124px;display:grid;place-items:center;border:2px solid #84eac1;border-radius:50%;box-shadow:0 0 0 14px #75eabd15;color:var(--mint);font-size:56px;font-weight:900}.end h2{font-size:clamp(32px,5.5vw,52px);letter-spacing:-.05em;margin:0 0 10px}.end .message{color:var(--dim);font-size:17px;line-height:1.5}.scores{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:25px 0}.scorecell{padding:16px;border-radius:15px;background:#124249;border:1px solid #38676b}.scorecell strong{display:block;font-size:30px;color:#d3ffe9}.scorecell small{font-size:11px;color:#add1c9}.reflection{padding:24px;border-radius:18px;text-align:left;background:#0e393d;border:1px solid #3b7270;margin-bottom:26px}.reflection h3{font-size:16px;color:var(--mint);margin:0 0 9px}.reflection p{line-height:1.6;margin:0;color:#d7eae3}.end-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.overlay{display:none;position:fixed;inset:0;z-index:50;background:#021419e8;backdrop-filter:blur(15px);padding:15px;align-items:center;justify-content:center}.overlay.open{display:flex}.modal{position:relative;width:min(600px,100%);background:#0d373a;border:1px solid #518d85;box-shadow:0 20px 100px #000b;padding:38px 24px;text-align:center;border-radius:24px}.modal h2{font-size:clamp(29px,5vw,45px);margin:8px auto 4px;line-height:1.1}.modal p{color:#c0dfd5;line-height:1.5}.qr-frame{background:#fff;width:min(270px,65vw);aspect-ratio:1;margin:20px auto 16px;padding:13px;border-radius:12px}.qr-frame img{width:100%;height:100%;display:block;image-rendering:pixelated}.url{font-size:clamp(12px,2vw,17px);color:#8ff0c6;font-weight:850;overflow-wrap:anywhere}.close{position:absolute;top:12px;right:14px;background:transparent;color:#d7eee5;border:0;font-size:28px;padding:5px 12px}
+@media(max-width:760px){.hero{grid-template-columns:1fr;gap:10px;padding:30px 0 50px}.hero h1{font-size:56px}.art{min-height:240px}.art:before{width:180px}.fractal-art{width:225px}.float-label{bottom:0}.wrap{padding:0 17px}header{padding:16px 0}.brand span:last-child{font-size:12px}.qbox{border-radius:20px;padding:22px 18px}.visual{padding:13px}.qkv{gap:5px}.qkv div{padding:10px 3px}.qkv b{font-size:25px}.qkv span{font-size:11px}.hero .lede{font-size:17px}}
+@media(max-width:400px){.hero h1{font-size:46px}.brand span:last-child{display:none}.barrow{grid-template-columns:64px 1fr 33px;gap:7px;font-size:11px}.scores{gap:6px}.scorecell{padding:12px 6px}.scorecell strong{font-size:26px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.joinform{margin:0 0 22px;max-width:440px}.joinform label{display:block;color:var(--mint);font-size:11px;font-weight:900;letter-spacing:.12em;margin-bottom:10px}.joinform input{width:100%;background:#0a3237;border:1px solid #629188;border-radius:14px;padding:16px;color:var(--white);font-size:17px}.joinform input::placeholder{color:#93b9b0}.join-error{color:#a4c9c1;font-size:12px;line-height:1.4;margin:8px 0 0}.join-error.bad{color:#ffaaa8}.live-tag{border:1px solid #66e4b4;color:#66e4b4;border-radius:40px;padding:8px 13px;font-size:12px;font-weight:800;white-space:nowrap}
+</style></head>
+<body>
+<div class="wrap">
+<header><div class="brand"><span class="mark" aria-hidden="true">△</span><span>¿QUIÉN ESTÁ PENSANDO?</span></div><div class="right"><button class="subtle-btn" id="qrbutton" type="button">▦ MOSTRAR QR</button></div></header>
+<main>
+<section class="screen active" id="home"><div class="hero"><div><div class="eyebrow">UN RETO PARA TODA LA SALA · 2026</div><h1>¿Piensas<br>como una <span>IA?</span></h1><p class="lede">Seis desafíos entre fractales, lenguaje y lógica. No se trata de acertar por suerte: se trata de saber <strong>por qué</strong>.</p><div class="meta"><span class="pill">6 desafíos + 1 dilema</span><span class="pill">3–5 minutos</span><span class="pill">Sin registro</span><span class="live-tag">● Marcador en vivo</span></div><div class="joinform"><label for="nickname">TU APODO PARA LA CLASIFICACIÓN</label><input id="nickname" type="text" placeholder="Escribe tu apodo" maxlength="24" minlength="2" autocomplete="nickname" aria-describedby="join-error"><p id="join-error" role="status" class="join-error">Tu apodo aparecerá en el marcador del presentador.</p></div><div class="hero-actions"><button class="primary" id="start" type="button">Entrar al reto →</button><button class="linklike" id="project" type="button">Proyectar el QR ↗</button></div></div><div class="art"><svg class="fractal-art" id="hero-fractal" viewBox="0 0 480 450" role="img" aria-label="Triángulo de Sierpiński"></svg><div class="float-label">EL INFINITO CABE EN UNA REGLA</div></div></div></section>
+<section class="screen" id="quiz"><div class="game-shell"><div class="topline"><div><div class="mini" id="round">DESAFÍO 01 / 07</div><div class="nums" id="scoreline">Cero puntos. Todo por descubrir.</div></div><div class="nums" id="round-type">RONDA</div></div><div class="progress"><i id="progressbar"></i></div><article class="qbox"><div class="qtag"><span id="category">PREDICCIÓN</span><div class="clock" id="clock" aria-live="off">◷ <span id="seconds">25</span> s</div></div><h2 id="question"></h2><p class="desc" id="description"></p><div class="visual" id="visual"></div><div class="options" id="options"></div><div class="feedback" id="feedback" role="status"><b id="feedback-title"></b><p id="explain"></p><button type="button" class="primary next" id="next">Siguiente desafío →</button></div></article><p class="kbd">También puedes contestar con las teclas 1, 2, 3 o 4.</p></div></section>
+<section class="screen" id="finish"><div class="end"><div class="medallion" id="medal">✦</div><div class="eyebrow">RETO COMPLETADO</div><h2 id="endtitle">Pensar es comprobar.</h2><p class="message" id="endmessage"></p><div class="scores"><div class="scorecell"><strong id="correctcount">0/6</strong><small>RESPUESTAS CORRECTAS</small></div><div class="scorecell"><strong id="points">0</strong><small>PUNTOS</small></div><div class="scorecell"><strong id="level">—</strong><small>NIVEL</small></div></div><div class="reflection"><h3>¿Y quién estaba pensando?</h3><p id="finalreflection"></p></div><div class="end-actions"><button class="primary" id="share" type="button">Compartir mi resultado ↗</button><button class="subtle-btn" id="restart" type="button">Jugar otra vez</button></div></div></section>
+</main><footer class="footer"><span>Kevin D. Silva-Pérez · Matemáticas × Inteligencia artificial</span><span>Universidad Mayor de Cartagena · 22 de octubre de 2026</span></footer>
+</div>
+<div class="overlay" id="overlay" role="dialog" aria-label="Código QR para entrar al reto" aria-modal="true"><div class="modal"><button class="close" id="close" type="button" aria-label="Cerrar">×</button><div class="eyebrow">ABRE LA CÁMARA DEL CELULAR</div><h2>¿Quién está pensando?</h2><p>Escanea el código y entra al reto.<br>No necesitas crear una cuenta.</p><div class="qr-frame"><img src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&amp;margin=10&amp;data=https%3A%2F%2Fkevinsilvamat.github.io%2Freto-ia-live%2F" alt="Código QR del juego"></div><div class="url">kevinsilvamat.github.io/reto-ia-live/</div><p style="font-size:12px">Cada participante responde y recibe su puntuación individual.</p></div></div>
+<script>
+(function(){
+'use strict';
+var PAGE='https://kevinsilvamat.github.io/reto-ia-live/';
+var questions=[
+{category:'01 · EL DETECTOR',title:'Un detector afirma: «¡Lo escribió una IA!»',description:'De 100 textos, 10 son de IA y 90 de humanos. El detector identifica el 90 % de los textos de IA, pero señala por error al 10 % de los humanos. Si acusa a un texto de haber sido escrito por IA, ¿qué probabilidad hay de que tenga razón?',visual:'bayes',options:['90 %','50 %','10 %','81 %'],why:'De los 10 textos de IA, detecta 9. Pero también acusa a 9 de los 90 textos humanos. Entre los 18 textos señalados, solo 9 son de IA: 9/18 = 50 %. Es el efecto de la tasa base: un detector muy preciso puede producir muchas falsas alarmas.'},
+{category:'02 · UN FRACTAL',title:'Un triángulo se convierte en tres.',description:'En cada iteración del triángulo de Sierpiński sobreviven 3 copias de cada triángulo. ¿Cuántas piezas quedan después de 3 iteraciones?',visual:'fractal',options:['9','12','27','81'],why:'Cada paso multiplica el número anterior por 3: 1 → 3 → 9 → 27. En general, después de n iteraciones aparecen 3ⁿ triángulos pequeños.'},
+{category:'03 · EL SECRETO DE LA ATENCIÓN',title:'¿Quién lleva la información?',description:'En un Transformer aparecen los vectores Q, K y V. ¿Cuál está asociado al contenido que se combina para obtener la salida de atención?',visual:'qkv',options:['Q (Query)','K (Key)','V (Value)','Ninguno de ellos'],why:'Q formula una consulta; K ayuda a calcular con qué elementos coincide; V aporta los valores o contenidos que se ponderan y combinan.'},
+{category:'04 · DENTRO DEL LENGUAJE',title:'Una frase no entra como una sola idea.',description:'Un modelo de lenguaje divide el texto en unidades que después representa numéricamente. ¿Cómo se llaman esas unidades?',visual:'tokens',options:['Fotogramas','Tokens','Teoremas','Píxeles'],why:'Se llaman tokens. Pueden ser palabras, partes de palabras, signos o símbolos. El modelo aprende relaciones entre sus representaciones.'},
+{category:'05 · ¿YA ES UNA PRUEBA?',title:'«Lo comprobé 10.000 veces».',description:'Una IA verifica una propiedad matemática para los primeros 10.000 números y concluye: «queda demostrado que se cumple para todos». ¿Qué falla?',visual:'proof',options:['Nada: diez mil ejemplos bastan','Falta verificar solo diez ejemplos más','Una cantidad finita de ejemplos no prueba el caso general','La matemática no usa ejemplos'],why:'Los ejemplos aportan evidencia, pero una afirmación universal necesita un argumento válido para todos los casos, no solo para los comprobados.'},
+{category:'06 · LA RESPUESTA CONVINCENTE',title:'La IA suena completamente segura.',description:'Te da una demostración muy elegante e incluye una referencia que no has visto. ¿Cuál es la reacción más rigurosa?',visual:'verify',options:['Aceptar: suena profesional','Comprobar la prueba y verificar la fuente','Pedirle que responda con más seguridad','Compartirla antes de revisarla'],why:'Una respuesta fluida no equivale a una respuesta verdadera. Las hipótesis, los pasos de la prueba y las referencias deben verificarse independientemente.'},
+{category:'07 · SIN RESPUESTA ÚNICA',title:'Entonces… ¿qué significa pensar?',description:'La última pregunta no suma puntos. Escoge la idea que más te haga reflexionar después de esta charla.',visual:'think',options:['Reconocer patrones y producir respuestas','Comprender y justificar lo que afirmamos','Crear significado desde la experiencia humana','Quizá necesitamos redefinir la pregunta'],poll:true,why:'La cuestión sigue abierta. Las máquinas pueden resolver tareas complejas; eso no decide por sí solo qué entendemos por comprensión, conciencia o creatividad.'}
+];
+var state={index:0,points:0,correct:0,chosen:[],poll:null,remain:25,timer:null,locked:false};
+var live={id:null,token:null,name:null};
+var API='https://otxbxwwvdvcdkctaaiic.supabase.co/functions/v1/quiz-live';
+async function request(action,extra){
+  var resp=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({action:action},extra||{})),cache:'no-store'});
+  var data=await resp.json().catch(function(){return {}});
+  if(!resp.ok)throw new Error(data.error||'Fallo de conexión con el marcador. Intenta de nuevo.');
+  return data;
+}
+function credentials(){return {playerId:live.id,playerToken:live.token}}
+var el=function(id){return document.getElementById(id)};
+var screens=['home','quiz','finish'];
+function screen(id){screens.forEach(function(s){el(s).classList.toggle('active',s===id)});window.scrollTo({top:0,behavior:'instant'})}
+function triangles(level,x,y,size,out){if(level===0){var h=size*.8660254;out.push('<polygon points="'+(x+size/2).toFixed(2)+','+y.toFixed(2)+' '+x.toFixed(2)+','+(y+h).toFixed(2)+' '+(x+size).toFixed(2)+','+(y+h).toFixed(2)+'" />');return}var h=size*.8660254;triangles(level-1,x+size/4,y,size/2,out);triangles(level-1,x,y+h/2,size/2,out);triangles(level-1,x+size/2,y+h/2,size/2,out)}
+function fractal(level){var out=[];triangles(level,25,14,430,out);return '<g fill="#65e4b4" stroke="#0a3035" stroke-width="1.6">'+out.join('')+'</g>'}
+el('hero-fractal').innerHTML=fractal(4);
+function graphic(type){
+if(type==='bayes')return '<div class="qkv"><div><b>10%</b><span>DE LOS TEXTOS SON DE IA</span></div><div><b>90%</b><span>ACIERTO AL DETECTAR IA</span></div><div><b>10%</b><span>FALSOS POSITIVOS HUMANOS</span></div></div><p style="font-size:12px;text-align:center;color:#acd8ce;margin:14px 0 0">Un detector parece muy fiable. ¿Pero qué significa una alerta?</p>';
+if(type==='fractal')return '<div class="fractal-mini"><svg viewBox="0 0 480 405" role="img" aria-label="Triángulo de Sierpiński, tres iteraciones">'+fractal(3)+'</svg></div>';
+if(type==='qkv')return '<div class="qkv"><div><b>Q</b><span>¿Qué busco?</span></div><div><b>K</b><span>¿Con qué encaja?</span></div><div><b>V</b><span>¿Qué aporto?</span></div></div>';
+if(type==='tokens')return '<div class="tokens"><span>El</span><span>cielo</span><span>está</span><span>azul</span></div><p style="font-size:12px;text-align:center;color:#acd8ce;margin:14px 0 0">Ejemplo esquemático: un token no siempre coincide con una palabra.</p>';
+if(type==='proof')return '<div class="quote">1, 2, 3, …, 10.000 <b>✓</b><br><span style="color:#a5d1c5;font-size:14px">¿Y qué sucede después?</span></div>';
+if(type==='verify')return '<div class="quote">«La demostración es correcta.<br><b>Confía en mí.</b>»</div>';
+return '<div class="quote"><b>¿Acertar = comprender?</b><br><span style="font-size:15px;color:#b4d2cd">Una pregunta para seguir pensando.</span></div>'
+}
+function stop(){if(state.timer){clearInterval(state.timer);state.timer=null}}
+function showClock(){el('seconds').textContent=String(state.remain);el('clock').classList.toggle('danger',state.remain<=7)}
+function tick(){state.remain--;showClock();if(state.remain<=0)choose(-1)}
+async function render(){
+stop();state.locked=false;var q=questions[state.index];
+el('round').textContent='DESAFÍO '+String(state.index+1).padStart(2,'0')+' / 07';
+el('scoreline').textContent=state.points+' puntos · '+state.correct+' aciertos';
+el('round-type').textContent=q.poll?'REFLEXIÓN':'ELECCIÓN MÚLTIPLE';
+el('progressbar').style.width=(state.index/questions.length*100)+'%';
+el('category').textContent=q.category;el('question').textContent=q.title;el('description').textContent=q.description;
+el('visual').innerHTML=graphic(q.visual);el('feedback').classList.remove('on');
+el('options').innerHTML='';
+q.options.forEach(function(v,i){var b=document.createElement('button');b.type='button';b.className='choice';var a=document.createElement('span');a.className='letter';a.textContent=String.fromCharCode(65+i);var c=document.createElement('span');c.textContent=v;b.append(a,c);b.addEventListener('click',function(){choose(i)});el('options').appendChild(b)});
+state.remain=state.index===0?45:25;el('clock').style.display=q.poll?'none':'flex';showClock();
+state.locked=true;Array.from(el('options').children).forEach(function(b){b.disabled=true});
+try{
+ var begun=await request('begin',Object.assign(credentials(),{index:state.index}));
+ state.remain=begun.remaining;showClock();state.locked=false;
+ Array.from(el('options').children).forEach(function(b){b.disabled=false});
+ if(!q.poll){if(state.remain<=0)choose(-1);else state.timer=setInterval(tick,1000);}
+}catch(e){
+ el('feedback-title').textContent='Conexión interrumpida';
+ el('explain').textContent=e.message;
+ el('next').textContent='Volver a intentar';
+ el('feedback').classList.add('on');
+ el('next').onclick=function(){el('next').onclick=null;render()};
+}
+}
+async function choose(i){
+if(state.locked)return;state.locked=true;stop();
+var q=questions[state.index];Array.from(el('options').children).forEach(function(b){b.disabled=true});
+var data;
+try{data=await request('answer',Object.assign(credentials(),{index:state.index,choice:i}));}
+catch(e){
+ state.locked=false;
+ el('feedback-title').textContent='No se guardó tu respuesta';
+ el('explain').textContent=e.message;
+ el('next').textContent='Reintentar';
+ el('next').onclick=function(){el('next').onclick=null;el('feedback').classList.remove('on');choose(i)};
+ el('feedback').classList.add('on');return;
+}
+el('next').onclick=null;
+var good=data.good;
+state.correct=data.correct;state.points=data.points;state.chosen.push(i);
+if(q.poll)state.poll=i>=0?q.options[i]:null;
+Array.from(el('options').children).forEach(function(b,j){b.disabled=true;if(i===j)b.classList.add(q.poll?'correct':good?'correct':'wrong');if(!q.poll&&j===data.correctIndex)b.classList.add('correct')});
+var title=q.poll?'No hay una única respuesta.':i===-1?'¡Se acabó el tiempo!':good?'¡Bien razonado!':'Aquí está la clave.';
+el('feedback-title').textContent=title;el('feedback-title').style.color=good||q.poll?'#85f0bc':'#ffd3bc';
+el('explain').textContent=q.why;
+el('next').textContent=state.index===questions.length-1?'Ver mi resultado →':'Siguiente desafío →';
+el('feedback').classList.add('on');el('scoreline').textContent=state.points+' puntos · '+state.correct+' aciertos · '+live.name;
+el('progressbar').style.width=((state.index+1)/questions.length*100)+'%'
+}
+async function start(){
+ var name=el('nickname').value.trim().replace(/\s+/g,' ');
+ var er=el('join-error'),btn=el('start');
+ if(name.length<2||name.length>24){er.textContent='Elige un apodo entre 2 y 24 caracteres.';er.classList.add('bad');el('nickname').focus();return}
+ btn.disabled=true;btn.textContent='Conectando…';er.classList.remove('bad');er.textContent='Conectando al marcador en vivo…';
+ try{
+   var p=await request('join',{nickname:name});
+   live.id=p.playerId;live.token=p.playerToken;live.name=p.nickname;
+   state.index=0;state.points=0;state.correct=0;state.chosen=[];state.poll=null;
+   screen('quiz');render();
+ }catch(e){er.textContent=e.message;er.classList.add('bad')}
+ finally{btn.disabled=false;btn.textContent='Entrar al reto →'}
+}
+function finish(){screen('finish');el('correctcount').textContent=state.correct+'/6';el('points').textContent=String(state.points);var level=state.correct>=5?'EXPERTO':state.correct>=3?'EXPLORADOR':'CURIOSO';el('level').textContent=level;el('medal').textContent=state.correct>=5?'✦':state.correct>=3?'△':'∞';el('endtitle').textContent=state.correct>=5?'La intuición no te engaña.':state.correct>=3?'Vas por buen camino.':'Lo interesante es seguir preguntando.';el('endmessage').textContent='Has respondido '+state.correct+' de 6 desafíos correctamente. El reto no termina con los puntos: comienza cuando te preguntas cómo llegaste a cada respuesta.';el('finalreflection').textContent='Tu elección: '+(state.poll||'seguir explorando la pregunta')+'. '+questions[6].why}
+function showQr(){el('overlay').classList.add('open');el('close').focus()}
+function hideQr(){el('overlay').classList.remove('open')}
+el('start').addEventListener('click',start);el('nickname').addEventListener('keydown',function(e){if(e.key==='Enter')start()});
+el('restart').addEventListener('click',function(){stop();screen('home');el('nickname').value='';el('nickname').focus();el('join-error').textContent='Para repetir el reto, elige otro apodo.'});
+el('next').addEventListener('click',function(){if(el('next').onclick)return;state.index++;if(state.index>=questions.length){stop();finish()}else render()});
+el('qrbutton').addEventListener('click',showQr);el('project').addEventListener('click',showQr);el('close').addEventListener('click',hideQr);
+el('overlay').addEventListener('click',function(e){if(e.target===el('overlay'))hideQr()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')hideQr();if(!el('quiz').classList.contains('active')||state.locked)return;var n=Number(e.key);if(n>=1&&n<=4)choose(n-1)});
+el('share').addEventListener('click',async function(){var s='¡Completé el reto «¿Quién está pensando?»! 🧠 '+state.correct+'/6 respuestas correctas y '+state.points+' puntos. Juega aquí: '+PAGE;try{if(navigator.share){await navigator.share({title:'¿Quién está pensando?',text:s,url:PAGE})}else if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(s);el('share').textContent='¡Copiado! ✓'}else{window.prompt('Copia tu resultado:',s)}}catch(e){if(e.name!=='AbortError')window.prompt('Copia tu resultado:',s)}});
+if(new URLSearchParams(location.search).get('modo')==='pantalla')showQr();
+})();
+</script></body></html>
