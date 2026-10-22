@@ -50,7 +50,7 @@ var questions=[
 {category:'07 · SIN RESPUESTA ÚNICA',title:'Entonces… ¿qué significa pensar?',description:'La última pregunta no suma puntos. Escoge la idea que más te haga reflexionar después de esta charla.',visual:'think',options:['Reconocer patrones y producir respuestas','Comprender y justificar lo que afirmamos','Crear significado desde la experiencia humana','Quizá necesitamos redefinir la pregunta'],poll:true,why:'La cuestión sigue abierta. Las máquinas pueden resolver tareas complejas; eso no decide por sí solo qué entendemos por comprensión, conciencia o creatividad.'}
 ];
 var state={index:0,points:0,correct:0,chosen:[],poll:null,remain:25,timer:null,locked:false};
-var live={id:null,token:null,name:null};
+var live={id:null,token:null,name:null};var retryMode=null,retryChoice=null;
 var API='https://otxbxwwvdvcdkctaaiic.supabase.co/functions/v1/quiz-live';
 async function request(action,extra){
   var resp=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({action:action},extra||{})),cache:'no-store'});
@@ -88,7 +88,7 @@ el('visual').innerHTML=graphic(q.visual);el('feedback').classList.remove('on');
 el('options').innerHTML='';
 q.options.forEach(function(v,i){var b=document.createElement('button');b.type='button';b.className='choice';var a=document.createElement('span');a.className='letter';a.textContent=String.fromCharCode(65+i);var c=document.createElement('span');c.textContent=v;b.append(a,c);b.addEventListener('click',function(){choose(i)});el('options').appendChild(b)});
 state.remain=state.index===0?45:25;el('clock').style.display=q.poll?'none':'flex';showClock();
-state.locked=true;Array.from(el('options').children).forEach(function(b){b.disabled=true});
+state.locked=true;retryMode=null;Array.from(el('options').children).forEach(function(b){b.disabled=true});
 try{
  var begun=await request('begin',Object.assign(credentials(),{index:state.index}));
  state.remain=begun.remaining;showClock();state.locked=false;
@@ -99,7 +99,7 @@ try{
  el('explain').textContent=e.message;
  el('next').textContent='Volver a intentar';
  el('feedback').classList.add('on');
- el('next').onclick=function(){el('next').onclick=null;render()};
+ retryMode='begin';
 }
 }
 async function choose(i){
@@ -112,10 +112,10 @@ catch(e){
  el('feedback-title').textContent='No se guardó tu respuesta';
  el('explain').textContent=e.message;
  el('next').textContent='Reintentar';
- el('next').onclick=function(){el('next').onclick=null;el('feedback').classList.remove('on');choose(i)};
+ retryMode='answer';retryChoice=i;
  el('feedback').classList.add('on');return;
 }
-el('next').onclick=null;
+retryMode=null;
 var good=data.good;
 state.correct=data.correct;state.points=data.points;state.chosen.push(i);
 if(q.poll)state.poll=i>=0?q.options[i]:null;
@@ -145,7 +145,7 @@ function showQr(){el('overlay').classList.add('open');el('close').focus()}
 function hideQr(){el('overlay').classList.remove('open')}
 el('start').addEventListener('click',start);el('nickname').addEventListener('keydown',function(e){if(e.key==='Enter')start()});
 el('restart').addEventListener('click',function(){stop();screen('home');el('nickname').value='';el('nickname').focus();el('join-error').textContent='Para repetir el reto, elige otro apodo.'});
-el('next').addEventListener('click',function(){if(el('next').onclick)return;state.index++;if(state.index>=questions.length){stop();finish()}else render()});
+el('next').addEventListener('click',function(){if(retryMode==='begin'){retryMode=null;el('feedback').classList.remove('on');render();return}if(retryMode==='answer'){retryMode=null;el('feedback').classList.remove('on');choose(retryChoice);return}state.index++;if(state.index>=questions.length){stop();finish()}else render()});
 el('qrbutton').addEventListener('click',showQr);el('project').addEventListener('click',showQr);el('close').addEventListener('click',hideQr);
 el('overlay').addEventListener('click',function(e){if(e.target===el('overlay'))hideQr()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')hideQr();if(!el('quiz').classList.contains('active')||state.locked)return;var n=Number(e.key);if(n>=1&&n<=4)choose(n-1)});
